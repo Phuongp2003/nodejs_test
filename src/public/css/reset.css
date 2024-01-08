@@ -1,25 +1,32 @@
 * {
-  margin: 0px;
-  padding: 0px; }
+    margin: 0px;
+    padding: 0px;
+}
 
 html {
-  font-size: 62.5%;
-  box-sizing: border-box; }
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
 
 a {
-  text-decoration: none; }
+    text-decoration: none;
+}
 
 .clr {
-  clear: both; }
+    clear: both;
+}
 
 ul li {
-  list-style: none; }
+    list-style: none;
+}
 
 .module {
-  display: block;
-  margin-left: calc((100% - var(--module-width))/2);
-  width: 1450px; }
+    display: block;
+    margin-left: calc((100% - var(--module-width))/2);
+    width: 1600px;
+}
 
 .module_maxwidth {
-  display: block;
-  width: 100%; }
+    display: block;
+    width: 100%;
+}

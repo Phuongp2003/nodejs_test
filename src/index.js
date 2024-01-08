@@ -1,35 +1,28 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
-const handlebars = require('express-handlebars');
+const ejs = require('ejs');
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser');
+const adminRoute = require('./routes/admin.js');
+const rootDir = require('./util/path.js');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(rootDir, 'public')));
 
 // logger
 app.use(morgan('combined'));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(rootDir, 'resources', 'views'));
+
+app.use(adminRoute);
 
 
-// engine
-app.engine('hbs',handlebars.engine(
-  {
-    extname: "hbs"
-  }
-));
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources', 'views'));
-
-
-
-app.get('/', (req, res) => {
-  res.render('home');
+app.use((req, res, next) => {
+  res.status(404).send('404 not found');
 })
-
-app.get('/blog', (req, res) => {
-  res.render('blog');
-})
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 })
